@@ -8,7 +8,8 @@ use App\Models\Category;
 class CategoryController extends Controller
 {
     public function allcategory() {
-        return view('allcategory');
+        $categories = Category::latest()->get();
+        return view('allcategory', compact('categories'));
     }
 
     public function addcategory() {
@@ -16,7 +17,7 @@ class CategoryController extends Controller
     }
     public function storecategory(Request $request){
         $request ->validate([
-            'category_name' => 'required|unique:categories1'
+            'category_name' => 'required|unique:categories'
         ]);
 
         Category::insert([
@@ -24,7 +25,23 @@ class CategoryController extends Controller
             'slug' => strtolower(str_replace('','-',$request->category_name))
         ]);        
 
-        return redirect()->route('allcategory');
+        return redirect()->route('allcategory')->with('message' , 'category add successfully');
+
+    }
+    public function editcategory($id){
+        $category_info = Category::findorFail($id);
+        return view('editcategory', compact('category_info'));
+    }
+    public function updatecategory(Request $request) {
+        $category_id =$request ->category_id;
+        $request ->validate([
+            'category_name' => 'required|unique:categories'
+        ]);
+        Category::findorFail($category_id)->update([
+            'category_name' => $request->category_name ,
+            'slug' => strtolower(str_replace(' ' ,'-', $request->category_name))
+        ]);
+        return redirect()->route('allcategory')->with('message' , 'update successfully');
 
     }
 }

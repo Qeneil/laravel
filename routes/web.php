@@ -32,6 +32,9 @@ Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'adminhom
         Route::get('/addmin/all-category' ,'allcategory' )->name('allcategory');
         Route::get('/addmin/add-category' ,'addcategory' )->name('addcategory');
         Route::post('/addmin/store-category' ,'storecategory' )->name('storecategory');
+        Route::get('/addmin/edit-category{id}' ,'editcategory' )->name('editcategory');
+        Route::post('/addmin/update-category' ,'updatecategory' )->name('updatecategory');
+
 
 
     });
