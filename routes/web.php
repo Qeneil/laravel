@@ -40,8 +40,12 @@ Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'adminhom
     });
     Route::controller(SubCategoryController::class)->group(function(){
 
-        Route::get('/addmin/all-subcategory' ,'allsubcategory' )->name('allsubcategory');
-        Route::get('/addmin/add-subcategory' ,'addsubcategory' )->name('addsubcategory');
+        Route::get('/admin/all-subcategory' ,'allsubcategory' )->name('allsubcategory');
+        Route::get('/admin/add-subcategory' ,'addsubcategory' )->name('addsubcategory');
+        Route::post('/admin/store-subcategory' ,'storesubcategory' )->name('storesubcategory');
+        Route::get('/admin/edit-subcategory/{id}' ,'editsubcategory' )->name('editsubcategory');
+        Route::get('/admin/delete-subcategory/{id}' ,'deletesubcategory' )->name('deletesubcategory');
+        Route::post('/admin/updatesubcategory ' ,'updatesubcategory ' )->name('updatesubcategory');
 
     });
     Route::controller(ProductController::class)->group(function(){

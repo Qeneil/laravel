@@ -15,14 +15,17 @@
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
+                      @foreach ($allsubcategories as $subcategory )
+                        
+                      @endforeach
                       <tr>
-                        <td>1</td>
-                        <td>Fan</td>
-                        <td>Electronics</td>
-                        <td>100</td>
+                        <td>{{$subcategory ->id }}</td>
+                        <td>{{$subcategory ->subcategory_name }}</td>
+                        <td>{{$subcategory ->category_name }}</td>
+                        <td>{{$subcategory ->product_count }}</td>
                         <td>
-                            <a href="" class="btn btn-primary">edit</a>
-                            <a href="" class="btn btn-warning">delete</a>
+                            <a href="{{ route('editsubcategory',$subcategory ->id) }}" class="btn btn-primary">edit</a>
+                            <a href="{{ route('deletesubcategory',$subcategory ->id   ) }}" class="btn btn-warning">delete</a>
 
                         </td>
                       </tr>
