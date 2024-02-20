@@ -45,7 +45,7 @@ Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'adminhom
         Route::post('/admin/store-subcategory' ,'storesubcategory' )->name('storesubcategory');
         Route::get('/admin/edit-subcategory/{id}' ,'editsubcategory' )->name('editsubcategory');
         Route::get('/admin/delete-subcategory/{id}' ,'deletesubcategory' )->name('deletesubcategory');
-        Route::post('/admin/updatesubcategory ' ,'updatesubcategory ' )->name('updatesubcategory');
+        Route::post('/admin/updatesubcategory' ,'updatesubcategory' )->name('updatesubcategory');
 
     });
     Route::controller(ProductController::class)->group(function(){

@@ -15,9 +15,8 @@
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                      @foreach ($allsubcategories as $subcategory )
-                        
-                      @endforeach
+                     @foreach ($allsubcategories as $subcategory  )
+                       
                       <tr>
                         <td>{{$subcategory ->id }}</td>
                         <td>{{$subcategory ->subcategory_name }}</td>
@@ -29,6 +28,8 @@
 
                         </td>
                       </tr>
+                      @endforeach
+
                      
                        
       

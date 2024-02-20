@@ -37,22 +37,23 @@ $allsubcategories =Subcategory::latest()->get();
 
     }
     public function editsubcategory($id) {
-        $subcategoryinfo =Subcategory::findOrFail($id);
+        $subcategoryinfo = Subcategory::findOrFail($id);
         return view('editsubcategory' ,compact('subcategoryinfo'));
     }
-    public function updatesubcategory(Request $request) {
-        $request ->validate([
-            'subcategory_name' => 'required|unique:subcategories' ,
-        ]);
-        $subcategoryid =$request ->subcategoryid;
-        Subcategory::findOrFail($subcategoryid)->update([
-            'subcategory_name' => $request->subcategory_name,
-            'slug' => strtolower(str_replace('','-',$request->subcategory_name)),
+  
+public function updatesubcategory(Request $request) {
+    $request ->validate([
+        'subcategory_name' => 'required|unique:subcategories' ,
+    ]);
+    $subcatid = $request ->subcatid;
+    Subcategory::findOrFail($subcatid)->update([
+        'subcategory_name' => $request->subcategory_name,
+        'slug' => strtolower(str_replace('','-',$request->subcategory_name)),
+    ]);
+    return redirect()->route('allsubcategory')->with('message' , 'subcategory update successfully');
 
-        ]);
-        return redirect()->route('allsubcategory')->with('message' , 'subcategory update successfully');
-
-    }
+}
+       
     public function deletesubcategory($id) {
         $categoryid =Subcategory::where('id',$id)->value('category_id');
         Subcategory::findOrFail($id)->delete();
