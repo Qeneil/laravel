@@ -30,7 +30,7 @@
                             <td>{{ $category->slug }}</td>
                             <td>
                                 <a href="{{route('editcategory', $category -> id )}}" class="btn btn-primary">edit</a>
-                                <a href="" class="btn btn-warning">delete</a>
+                                <a href="{{route('deletecategory', $category -> id )}}" class="btn btn-warning">delete</a>
                             </td>
                         </tr>
                     @endforeach

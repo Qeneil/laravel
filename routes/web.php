@@ -34,6 +34,7 @@ Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'adminhom
         Route::post('/addmin/store-category' ,'storecategory' )->name('storecategory');
         Route::get('/addmin/edit-category{id}' ,'editcategory' )->name('editcategory');
         Route::post('/addmin/update-category' ,'updatecategory' )->name('updatecategory');
+        Route::get('/addmin/delete-category{id}' ,'deletecategory' )->name('deletecategory');
 
 
 
