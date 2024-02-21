@@ -53,6 +53,7 @@ Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'adminhom
 
         Route::get('/addmin/all-products' ,'allproduct' )->name('allproduct');
         Route::get('/addmin/add-product' ,'addproduct' )->name('addproduct');
+        Route::post('/addmin/store_product' ,'storeproduct' )->name('storeproduct');
 
     });
     Route::controller(OrderController::class)->group(function(){
