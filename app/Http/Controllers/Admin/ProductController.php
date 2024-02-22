@@ -17,7 +17,8 @@ class ProductController extends Controller
         return view('addproduct',compact('categories' , 'subcategories'));
     }
     public function allproduct() {
-        return view('allproduct');
+        $products = Product::latest()->get();
+        return view('allproduct', compact('products'));
     }
     public function storeproduct(Request $request) {
         $request ->validate([
@@ -63,4 +64,56 @@ class ProductController extends Controller
         return redirect()->route('allproduct')->with('message' , 'add product successfully');
 
     }
+    public function editproductimage($id) {
+        $productinfo = Product::findOrFail($id);
+        return view('editproductimage' , compact('productinfo'));
+    }
+    public function updateproductimg(Request $request) {
+        $request ->validate([
+            'product_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048' ,
+        ]);
+        $id = $request ->id;
+        $image = $request->file('product_img');
+        $img_name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        $request->product_img->move(public_path('upload'),$img_name);
+        $img_url ='upload/' .$img_name;
+
+        Product::findOrFail($id)->update([
+            'product_img' => $img_url,
+
+        ]);
+        return redirect()->route('allproduct')->with('message' , 'update product successfully');
+
+
+
+    }
+
+    public function editproduct($id) {
+$productinfo = Product::findOrFail($id);
+return view('editproduct' , compact ('productinfo'));
+    }
+    public function  updateproduct(Request $request) {
+$productid =$request -> id;
+$request ->validate([
+    'product_name' => 'required|unique:products' ,
+    'price' => 'required',
+    'quantity' => 'required' ,
+    'product_short_des' => 'required',
+    'product_long_des' => 'required' ,
+  
+]);
+Product::findOrFail($productid) ->update([
+    'product_name' => $request->product_name,
+    'product_short_des' => $request->product_short_des,
+    'product_long_des' => $request->product_long_des,
+    'price' => $request->price,
+    'quantity' => $request->quantity,
+            'slug' => strtolower(str_replace('','-',$request->subcategory_name)),
+
+]);
+return redirect()->route('allproduct')->with('message' , 'product details update successfully');
+
+    }
+
 }
+

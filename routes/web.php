@@ -54,6 +54,10 @@ Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'adminhom
         Route::get('/addmin/all-products' ,'allproduct' )->name('allproduct');
         Route::get('/addmin/add-product' ,'addproduct' )->name('addproduct');
         Route::post('/addmin/store_product' ,'storeproduct' )->name('storeproduct');
+        Route::get('/addmin/edit-product-img/{id}' ,'editproductimage' )->name('editproductimage');
+        Route::post('/addmin/update-product-img' ,'updateproductimg' )->name('updateproductimg');
+        Route::get('/addmin/edit-product-details/{id}' ,'editproduct' )->name('editproduct');
+        Route::post('/addmin/update-product' ,'updateproduct' )->name('updateproduct');
 
     });
     Route::controller(OrderController::class)->group(function(){
