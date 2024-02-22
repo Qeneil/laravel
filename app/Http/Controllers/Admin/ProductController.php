@@ -114,6 +114,17 @@ Product::findOrFail($productid) ->update([
 return redirect()->route('allproduct')->with('message' , 'product details update successfully');
 
     }
+    public function deleteproduct($id) {
+        Product::findOrFail($id)->delete();
+        $categoryid =Product::where('id',$id)->value('product_category_id');
+        $subcategoryid =Product::where('id',$id)->value('product_subcatgory_id');
+        Category::where('id',$categoryid)->decrement('product_count',1);
+        Subcategory::where('id',$subcategoryid)->decrement('product_count',1);
+        return redirect()->route('allproduct')->with('message' , 'product delete successfully');
+
+
+
+    }
 
 }
 

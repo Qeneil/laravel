@@ -17,11 +17,16 @@ use App\Http\Controllers\Admin\OrderController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+//route::get('/' , function() {
+    //return view('user.layouts.template');
+//});
+Route::controller(HomeController::class)->group(function () {
+    route::get('/' , 'index')->name('home');
+});
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'adminhome'])
     ->middleware('is_admin')
     ->name('adminhome');// routes/web.php
@@ -58,6 +63,7 @@ Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'adminhom
         Route::post('/addmin/update-product-img' ,'updateproductimg' )->name('updateproductimg');
         Route::get('/addmin/edit-product-details/{id}' ,'editproduct' )->name('editproduct');
         Route::post('/addmin/update-product' ,'updateproduct' )->name('updateproduct');
+        Route::get('/addmin/delete-product/{id}' ,'deleteproduct' )->name('deleteproduct');
 
     });
     Route::controller(OrderController::class)->group(function(){
