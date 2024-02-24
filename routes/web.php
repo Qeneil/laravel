@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
-
+use App\Http\Controllers\ClientController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +22,21 @@ use App\Http\Controllers\Admin\OrderController;
 //});
 Route::controller(HomeController::class)->group(function () {
     route::get('/' , 'index')->name('home');
+});
+Route::controller(ClientController::class)->group(function () {
+    route::get('/category/{id}/{slug}' , 'category')->name('category');
+    route::get('/product-details/{id}/{slug}' , 'singleproduct')->name('singleproduct');
+    route::get('/add-to-cart' , 'addcart')->name('addcart');
+    route::post('/add-product-to-cart/{id}' , 'addproducttocart')->name('addproducttocart');
+    route::get('/checkout' , 'checkout')->name('checkout');
+    route::get('/userprofile' , 'userprofile')->name('userprofile');
+    route::get('/userprofile/pendingorder' , 'userpendingorder')->name('userpendingorder');
+    route::get('/userprofile/history' , 'userhistory')->name('userhistory');
+    route::get('/new-real' , 'newreal')->name('newreal');
+    route::get('/toay-deal' , 'todaydeal')->name('todaydeal');
+    route::get('/customer-service' , 'customerservice')->name('customerservice');
+
+
 });
 
 Auth::routes();

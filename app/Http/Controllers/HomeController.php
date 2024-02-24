@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('user.layouts.template');
+        $allproducts = Product::latest()->get();
+        return view('user.home', compact('allproducts'));
     }
     /**
      * Show the application dashboard.

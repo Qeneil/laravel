@@ -55,7 +55,7 @@ class ProductController extends Controller
             'product_subcatgory_id' => $request->product_subcatgory_id,
             'product_img' => $img_url,
             'quantity' => $request->quantity,
-            'slug' => strtolower(str_replace('','-',$request->subcategory_name)),
+            'slug' => strtolower(str_replace('','-',$request->product_name)),
 
 
         ]);
@@ -108,7 +108,7 @@ Product::findOrFail($productid) ->update([
     'product_long_des' => $request->product_long_des,
     'price' => $request->price,
     'quantity' => $request->quantity,
-            'slug' => strtolower(str_replace('','-',$request->subcategory_name)),
+    'slug' => strtolower(str_replace('','-',$request->subcategory_name)),
 
 ]);
 return redirect()->route('allproduct')->with('message' , 'product details update successfully');
