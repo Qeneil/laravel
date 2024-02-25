@@ -27,7 +27,7 @@ Route::controller(ClientController::class)->group(function () {
     route::get('/category/{id}/{slug}' , 'category')->name('category');
     route::get('/product-details/{id}/{slug}' , 'singleproduct')->name('singleproduct');
     route::get('/add-to-cart' , 'addcart')->name('addcart');
-    route::post('/add-product-to-cart/{id}' , 'addproducttocart')->name('addproducttocart');
+    route::post('/add-product-to-cart/' , 'addtocart')->name('addtocart');
     route::get('/checkout' , 'checkout')->name('checkout');
     route::get('/userprofile' , 'userprofile')->name('userprofile');
     route::get('/userprofile/pendingorder' , 'userpendingorder')->name('userpendingorder');

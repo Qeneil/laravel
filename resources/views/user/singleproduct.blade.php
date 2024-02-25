@@ -19,20 +19,21 @@
                 <li>Subcategory :{{ $product->product_subcatgory_name }}</li>
                 <li>Quarntity :{{ $product->quantity }}</li>
                </ul>
-               <div class="btn_main">
-
-                <form action="{{ route('addproducttocart',$product->id ) }}" method="POST"></form>
-                @csrf
-                <input type="hidden" value=" {{ $product->id }}" name="prouct_id">
-<div class="form-group">
-<label for="prouct_quantity">How many pics?</label>
-                <input class="form-control" type="number" min='1' placeholder="1" name="product_quantity" >
             </div>
-                <br>
-               </div>
-                <input class="btn btn-warning" type="submit" value="Add To Cart">
-            </form>
-               </div>
+                <div class="btn_main">
+                     
+                    <div class="btn_main">
+                        <form action="{{ route('addtocart') }}" method="POST">
+                            @csrf
+                        <input type="hidden" value=" {{ $product->id }}" name="product_id">
+                        <div class="form-group">
+                            <input type="hidden" value=" {{ $product->price }}" name="price">
+                         <label for="quantity">How many pics?</label>
+                         <input class="form-control" type="number" min='1' placeholder="1" name="quantity" >
+                     </div>
+                        <br>
+                        <input class="btn btn-warning" type="submit" value="Add To Cart">
+                    </form>
 
             </div>
         </div>
@@ -53,13 +54,15 @@
                           <div class="tshirt_img"><img src="{{ asset($product ->product_img) }}"></div>
                           <div class="btn_main">
                              <div class="buy_bt">   
-                                <form action="{{ route('addproducttocart',$product->id ) }}" method="POST">
+                                <form action="{{ route('addtocart') }}" method="POST">
                                 @csrf
-                                <input type="hidden" value=" {{ $product->id }}" name="prouct_id">
+                                <input type="hidden" value=" {{ $product->id }}" name="product_id">
                
                                 <br>
-                                <input class="btn btn-warning" type="submit" value="Buy NOW">
-                            </form>
+                                <input type="hidden" value=" {{ $product->id }}" name="product_id">
+                                <input type="hidden" value=" {{ $product->price }}" name="price">
+                                <input type="hidden" value="1" name="quantity">
+                                                        </form>
                             
                           </div>
                              <div class="seemore_bt">
