@@ -25,7 +25,7 @@
                              </form>
                              
                            </div>
-                               <div class="seemore_bt"><a href="#">See More</a></div>
+                               <div class="seemore_bt"><a href="{{ route('singleproduct', [$product->id, $product->slug]) }}">See More</a></div>
                      
                       
                             </div>
