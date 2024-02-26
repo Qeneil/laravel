@@ -35,7 +35,7 @@ public function addtocart(Request $request) {
     $quantity = $request->quantity;
     $price = $product_price * $quantity;
 
-    if ($request->product_id !== null) {
+    if ($request->product_id !== null && $quantity !== null) {
         Cart::insert([
             'product_id' => $request->product_id,
             'user_id' => Auth::id(),
