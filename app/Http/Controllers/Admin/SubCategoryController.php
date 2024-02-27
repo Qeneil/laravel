@@ -33,7 +33,7 @@ $allsubcategories =Subcategory::latest()->get();
             'category_name' =>$category_name
         ]);
         Category::where('id',$category_id)->increment('subcategory_count',1);
-        return redirect()->route('allsubcategory')->with('message' , 'subcategory add successfully');
+        return redirect()->route('allsubcategory');
 
     }
     public function editsubcategory($id) {

@@ -100,7 +100,7 @@ $request ->validate([
     'quantity' => 'required' ,
     'product_short_des' => 'required',
     'product_long_des' => 'required' ,
-  
+
 ]);
 Product::findOrFail($productid) ->update([
     'product_name' => $request->product_name,
@@ -108,7 +108,7 @@ Product::findOrFail($productid) ->update([
     'product_long_des' => $request->product_long_des,
     'price' => $request->price,
     'quantity' => $request->quantity,
-    'slug' => strtolower(str_replace('','-',$request->subcategory_name)),
+    'slug' => strtolower(str_replace('','-',$request->product_name)),
 
 ]);
 return redirect()->route('allproduct')->with('message' , 'product details update successfully');

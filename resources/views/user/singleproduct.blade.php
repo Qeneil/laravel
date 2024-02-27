@@ -20,21 +20,22 @@
                 <li>Quarntity :{{ $product->quantity }}</li>
                </ul>
             </div>
-                <div class="btn_main">
-                     
-                    <div class="btn_main">
-                        <form action="{{ route('addtocart') }}" method="POST">
+            <div class="btn_main">
+                    <div class="buy_bt">   
+                        <form action="{{ route('addtocart' ) }}" method="POST">
                             @csrf
-                        <input type="hidden" value=" {{ $product->id }}" name="product_id">
-                        <div class="form-group">
+                            <input type="hidden" value=" {{ $product->id }}" name="product_id">
+                            <div class="form-group">
+                                <label for="quantity">How many pics?</label>
+                                <input class="form-control" type="number" min="1" placeholder="1" name="quantity">
+    
                             <input type="hidden" value=" {{ $product->price }}" name="price">
-                         <label for="quantity">How many pics?</label>
-                         <input class="form-control" type="number" min='1' placeholder="1" name="quantity" >
-                     </div>
-                        <br>
-                        <input class="btn btn-warning" type="submit" value="Add To Cart">
-                    </form>
+                            <br>
+                            <input class="btn btn-warning" type="submit" value="Buy NOW">
+                            
+                        </form>
 
+                   
             </div>
         </div>
     </div>
@@ -54,8 +55,8 @@
                           <div class="tshirt_img"><img src="{{ asset($product ->product_img) }}"></div>
                           <div class="btn_main">
                              <div class="buy_bt">   
-                                <form action="{{ route('addtocart') }}" method="POST">
-                                @csrf
+                                <form action="{{ route('addtocart' ) }}" method="POST">
+                                    @csrf
                                 <input type="hidden" value=" {{ $product->id }}" name="product_id">
                
                                 <br>
