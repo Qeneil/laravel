@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\ShippingInfo;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -48,9 +49,30 @@ public function addtocart(Request $request) {
         // Handle the case where product_id is null
         return redirect()->route('addcart')->with('error', 'Product ID is required');
     }
+  
+}
+public function deletecart($id) {
+   Cart::findOrFail($id)->delete();
+    return redirect()->route('addcart');
+}
+public function getshipping() {
+    return view('user.getshipping');
+}
+public function addshipping(Request $request) {
+    ShippingInfo::insert([
+        'user_id' => Auth::id(),
+        'phone_number' => $request -> phone_number ,
+        'city_name' => $request -> city_name,
+        'postal_code' => $request -> postal_code,
+    ]);
+    return redirect()->route('checkout');
 }
 public function checkout() {
-    return view('user.checkout');
+    $userid = Auth::id();
+   $cart_item = Cart::where('user_id' , $userid)->get();
+   $shipping_address =ShippingInfo::where('user_id' , $userid)->first();
+
+    return view('user.checkout' , compact('cart_item' ,'shipping_address'));
 }
 public function userprofile() {
     return view('user.userprofile');

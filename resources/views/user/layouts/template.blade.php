@@ -128,7 +128,7 @@ $categories = App\Models\Category::latest()->get();
                      </div>
                      <div class="login_menu">
                         <ul>
-                           <li><a href="#">
+                           <li><a href="{{ route('addcart') }}">
                               <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                               <span class="padding_10">Cart</span></a>
                            </li>

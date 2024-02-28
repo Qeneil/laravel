@@ -28,6 +28,8 @@ Route::controller(ClientController::class)->group(function () {
     route::get('/product-details/{id}/{slug}' , 'singleproduct')->name('singleproduct');
     route::get('/add-to-cart' , 'addcart')->name('addcart');
     route::post('/add-product-to-cart/' , 'addtocart')->name('addtocart');
+    route::get('/get-shipping' , 'getshipping')->name('getshipping');
+    route::post('/add-shipping' , 'addshipping')->name('addshipping');
     route::get('/checkout' , 'checkout')->name('checkout');
     route::get('/userprofile' , 'userprofile')->name('userprofile');
     route::get('/userprofile/pendingorder' , 'userpendingorder')->name('userpendingorder');
@@ -35,6 +37,8 @@ Route::controller(ClientController::class)->group(function () {
     route::get('/new-real' , 'newreal')->name('newreal');
     route::get('/toay-deal' , 'todaydeal')->name('todaydeal');
     route::get('/customer-service' , 'customerservice')->name('customerservice');
+    Route::get('/remove-cart/{id}' ,'deletecart' )->name('deletecart');
+
 
 
 });
