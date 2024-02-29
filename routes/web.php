@@ -30,6 +30,7 @@ Route::controller(ClientController::class)->group(function () {
     route::post('/add-product-to-cart/' , 'addtocart')->name('addtocart');
     route::get('/get-shipping' , 'getshipping')->name('getshipping');
     route::post('/add-shipping' , 'addshipping')->name('addshipping');
+    route::post('/place-product' , 'placeproduct')->name('placeproduct');
     route::get('/checkout' , 'checkout')->name('checkout');
     route::get('/userprofile' , 'userprofile')->name('userprofile');
     route::get('/userprofile/pendingorder' , 'userpendingorder')->name('userpendingorder');

@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\ShippingInfo;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -74,12 +75,38 @@ public function checkout() {
 
     return view('user.checkout' , compact('cart_item' ,'shipping_address'));
 }
+public function placeproduct() {
+    $userid = Auth::id();
+    $shipping_address =ShippingInfo::where('user_id' , $userid)->first();
+    $cart_item = Cart::where('user_id' , $userid)->get();
+    foreach($cart_item as $item) {
+        Order::insert([
+            'userid' => $userid ,
+            'shipping_phonenumber' => $shipping_address ->phone_number ,
+            'shipping_city' => $shipping_address ->city_name ,
+            'shipping_postalcode' => $shipping_address ->postal_code ,
+            'product_id' => $item -> product_id ,
+            'quantity' => $item -> quantity ,
+            'total_price' => $item -> price
+
+
+
+        ]);
+        $id =$item ->id;
+        Cart::findOrFail($id)->delete();
+
+    }
+    ShippingInfo::where('user_id' , $userid)->first()->delete();
+    
+    return redirect() ->route('userpendingorder');
+}
 public function userprofile() {
     return view('user.userprofile');
 
 }
 public function userpendingorder() {
-    return view('user.userpendingorder');
+    $pending_order  =Order::where('status' , 'pending')->latest()->get();
+    return view('user.userpendingorder' , compact('pending_order'));
 
 }
 public function userhistory() {

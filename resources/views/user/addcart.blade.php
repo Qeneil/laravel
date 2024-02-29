@@ -13,13 +13,7 @@ $categories = App\Models\Category::latest()->get();
 <div class="row">
   <div class="col-12"> 
     <div class="box_main"> 
-      <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Product image</th>
-
-              <th>Product Name</th>
+     c
               <th>Quantity</th>
               <th>Price</th>
               <th>Action</th>

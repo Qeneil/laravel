@@ -56,7 +56,7 @@
         @csrf
         <input type="submit" value="Cancle Order " class="btn btn-danger mr-3">
     </form>
-    <form action="" method="POST">
+    <form action="{{ route('placeproduct') }}" method="POST">
         @csrf
         <input type="submit" value="Place Order " class="btn btn-primary mr-3">
     </form>
